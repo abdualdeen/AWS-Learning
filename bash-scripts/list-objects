@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+# check if the first arg is given.
+if [ -z "$1" ]; then
+    echo "No bucket name provided. Usage: ./delete-bucket bucket-name"
+    exit 1
+fi 

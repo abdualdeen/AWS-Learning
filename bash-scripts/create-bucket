@@ -8,4 +8,4 @@ fi
 
 BUCKET_NAME=$1
 
-aws s3api create-bucket --bucket $BUCKET_NAME --region us-west-2
+aws s3api create-bucket --bucket $BUCKET_NAME --region us-west-2 --create-bucket-configuration LocationConstraint=us-west-2
