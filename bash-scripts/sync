@@ -1,1 +1,44 @@
 #! /usr/bin/env bash
+
+# Exit if command fails
+set -e
+
+# check if the first arg is given.
+if [ -z "$1" ]; then
+    echo "No bucket name provided. Usage: ./sync bucket-name"
+    exit 1
+fi 
+
+BUCKET_NAME=$1
+
+OUTPUT_DIR="/tmp/s3-scripts"
+
+rm -r $OUTPUT_DIR
+
+mkdir -p "$OUTPUT_DIR"
+
+NUM_FILES=$((RANDOM % 6 + 5))
+
+# Function to generate a random filename
+generate_random_filename() {
+    echo "file_$(date +%s%N)_$RANDOM.txt"
+}
+
+# Function to generate random files with random content
+generate_random_files() {
+    for ((i=1; i<=NUM_FILES; i++))
+    do
+        FILENAME=$(generate_random_filename)
+        FILEPATH="$OUTPUT_DIR/$FILENAME"
+        
+        # Generate random content using /dev/urandom and truncate it to desired size
+        head -c 1024 </dev/urandom > "$FILEPATH"
+        
+        echo "Generated $FILEPATH"
+    done
+}
+
+# Call the function to generate files
+generate_random_files
+
+aws s3 sync $OUTPUT_DIR s3://$BUCKET_NAME/files

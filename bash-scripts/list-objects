@@ -2,6 +2,10 @@
 
 # check if the first arg is given.
 if [ -z "$1" ]; then
-    echo "No bucket name provided. Usage: ./delete-bucket bucket-name"
+    echo "No bucket name provided. Usage: ./list-objects"
     exit 1
 fi 
+
+BUCKET_NAME=$1
+
+aws s3api list-objects-v2 --bucket $BUCKET_NAME
