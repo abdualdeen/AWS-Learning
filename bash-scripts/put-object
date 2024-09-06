@@ -2,3 +2,23 @@
 
 # Exit if command fails
 set -e
+
+echo "~~ Upload Single File ~~"
+
+# check if the args are given.
+if [ -z "$1" ]; then
+    echo "No bucket name provided. Usage: ./put-object bucket-name file-name"
+    exit 1
+fi 
+
+if [ -z "$2" ]; then
+    echo "No bucket name provided. Usage: ./put-object bucket-name file-name"
+    exit 1
+fi 
+
+
+BUCKET_NAME=$1
+FILE_NAME=$2
+OBJECT_KEY=$(basename "$FILE_NAME")
+
+aws s3api put-object --bucket $BUCKET_NAME --body $FILE_NAME --key $OBJECT_KEY
