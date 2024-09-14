@@ -3,6 +3,7 @@ A repo to use for learning AWS.
 
 ## Required System Packages
 `aws-cli-v2`
+`terraform`
 
 ### Required Ruby Packages
 * Nokogiri

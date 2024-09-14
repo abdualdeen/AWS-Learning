@@ -1,0 +1,9 @@
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stack-templates-overview.html
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A simple S3 bucket.
+Resources:
+  MyBucket:
+    Type: 'AWS::S3::Bucket'
+    # bucket name can be specified by not required. AWS will auto generate a random name.
+    # Properties:
+    #   BucketName: amzn-s3-demo-bucket

@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+# Exit if command fails
+set -e
+
+STACK_NAME="cfn-s3-example"
+
+echo "Deleting the $STACK_NAME stack in CFN..."
+
+aws cloudformation delete-stack --stack-name $STACK_NAME --region us-west-2
