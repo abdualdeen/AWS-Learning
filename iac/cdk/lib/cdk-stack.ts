@@ -12,6 +12,5 @@ export class CdkStack extends Stack {
       enforceSSL: true,
       versioned: false
     });
-
   }
 }
